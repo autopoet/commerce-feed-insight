@@ -15,6 +15,17 @@
 - 广告归因字段。
 - 看板指标计算口径。
 
+### 1.1 当前实现状态
+
+当前埋点协议已在 MVP 中落地：
+
+- `track` 统一补齐 `eventId`、`timestamp`、`sessionId`、`userId`、`channel`、`campaign`、`creative`。
+- `page_view`、`product_exposure`、`product_click`、`add_to_cart`、`purchase` 均已接入。
+- 有效曝光使用 IntersectionObserver：可见比例大于等于 50%，并停留至少 1000ms。
+- 同一 session 内同一商品只上报一次有效曝光。
+- 看板指标全部从本地事件流聚合得到。
+- 当前事件只保存在前端运行时状态中，刷新页面后事件流会重置。
+
 ## 2. 埋点目标
 
 埋点系统服务于一条核心链路：

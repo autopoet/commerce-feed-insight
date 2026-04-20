@@ -47,6 +47,7 @@
 - React Router
 - Zustand
 - Playwright
+- Vercel
 
 ## 工程结构
 
@@ -97,13 +98,13 @@ docs/
 
 ## 看板指标
 
-- Exposures：有效曝光数
-- Clicks：商品点击数
-- Carts：加购数
-- Purchases：购买数
+- 曝光数：有效曝光事件数量
+- 点击数：商品卡片点击数量
+- 加购数：加购事件数量
+- 购买数：购买事件数量
 - CTR：点击数 / 曝光数
-- Cart Rate：加购数 / 点击数
-- Purchase Rate：购买数 / 点击数
+- 加购率：加购数 / 点击数
+- 购买率：购买数 / 点击数
 
 看板数据全部从事件流实时聚合，不在 UI 中写死指标。
 
@@ -122,12 +123,19 @@ npm run build
 npm run test:e2e
 ```
 
+## 部署说明
+
+项目部署在 Vercel，仓库推送到 `main` 分支后会触发自动部署。
+
+本项目使用 React Router 的 `BrowserRouter`，因此通过 `vercel.json` 配置了 SPA rewrite，保证 `/feed` 和 `/dashboard` 等子路由在刷新时也能正常访问。
+
 ## 当前范围
 
 已完成：
 
 - 广告入口页
 - 推荐流页
+- 中文化页面文案
 - 虚拟列表
 - 图片懒加载
 - 骨架屏
@@ -136,6 +144,7 @@ npm run test:e2e
 - 广告归因
 - 实时漏斗看板
 - Playwright 冒烟测试
+- Vercel 在线部署
 
 未包含：
 

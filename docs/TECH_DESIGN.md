@@ -13,6 +13,16 @@
 
 如果实现过程中修改页面结构、事件模型、指标口径、状态管理方式或关键依赖，需要同步更新本文档。
 
+### 1.1 当前实现状态
+
+当前 MVP 已实现、通过验证并部署：
+
+- 在线预览：https://commerce-feed-insight.vercel.app/
+- 部署平台：Vercel。
+- SPA 路由兜底：通过 `vercel.json` 将所有路径 rewrite 到 `index.html`，支持 `/feed`、`/dashboard` 直接访问和刷新。
+- UI 文案：页面已中文化，mock 商品、广告渠道、活动、创意均使用中文展示。
+- 验证命令：`npm run lint`、`npm run build`、`npm run test:e2e`。
+
 ## 2. 技术目标
 
 MVP 技术目标：
@@ -40,13 +50,18 @@ MVP 技术目标：
 - React：页面与组件开发。
 - TypeScript：业务模型和事件模型类型约束。
 - Vite：本地开发和构建。
+- React Router：页面路由。
+- Zustand：轻量全局状态管理。
+- Playwright：主链路冒烟测试和截图生成。
+- Vercel：静态站点部署。
 
-### 3.2 建议新增依赖
+### 3.2 已新增依赖
 
-MVP 推荐新增：
+MVP 已新增：
 
 - `react-router-dom`：页面路由。
 - `zustand`：轻量全局状态管理。
+- `@playwright/test`：端到端冒烟测试。
 
 暂不建议新增：
 
