@@ -18,7 +18,7 @@ export function FunnelBars({ steps }: FunnelBarsProps) {
           <div className="funnel-label">
             <strong>{step.label}</strong>
             <span>
-              {step.value} · {step.rateLabel}
+              {step.value} 次 / {step.rateLabel}
             </span>
           </div>
           <div className="funnel-track">
@@ -29,4 +29,3 @@ export function FunnelBars({ steps }: FunnelBarsProps) {
     </div>
   )
 }
-

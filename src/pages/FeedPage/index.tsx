@@ -37,7 +37,7 @@ export function FeedPage() {
     [campaign, channel, creative],
   )
   const [isLoading, setIsLoading] = useState(true)
-  const [lastAction, setLastAction] = useState('Waiting for behavior')
+  const [lastAction, setLastAction] = useState('等待用户行为')
   const { range, visibleItems, totalHeight, setScrollTop } = useVirtualList({
     items: products,
     itemHeight: ITEM_HEIGHT,
@@ -81,7 +81,7 @@ export function FeedPage() {
         category: product.category,
       },
     })
-    setLastAction(`Exposure ${product.productId} · position ${position + 1}`)
+    setLastAction(`曝光 ${product.productId} / 第 ${position + 1} 位`)
   }
 
   const handleProductClick = (product: Product, position: number) => {
@@ -95,7 +95,7 @@ export function FeedPage() {
         category: product.category,
       },
     })
-    setLastAction(`Click ${product.productId} · position ${position + 1}`)
+    setLastAction(`点击 ${product.productId} / 第 ${position + 1} 位`)
   }
 
   const handleAddToCart = (product: Product, position: number) => {
@@ -109,7 +109,7 @@ export function FeedPage() {
         category: product.category,
       },
     })
-    setLastAction(`Cart ${product.productId} · position ${position + 1}`)
+    setLastAction(`加购 ${product.productId} / 第 ${position + 1} 位`)
   }
 
   const handlePurchase = (product: Product, position: number) => {
@@ -124,46 +124,46 @@ export function FeedPage() {
         category: product.category,
       },
     })
-    setLastAction(`Purchase ${product.productId} · position ${position + 1}`)
+    setLastAction(`购买 ${product.productId} / 第 ${position + 1} 位`)
   }
 
   return (
     <main className="page feed-page">
       <section className="feed-header">
         <div>
-          <p className="eyebrow">Recommendation Feed</p>
-          <h1>Product Feed</h1>
+          <p className="eyebrow">商品推荐流</p>
+          <h1>电商商品推荐流</h1>
           <p>
-            Traffic source: {contextLabel.channel} / {contextLabel.campaign} / {contextLabel.creative}
+            当前流量来源：{contextLabel.channel} / {contextLabel.campaign} / {contextLabel.creative}
           </p>
         </div>
         <div className="feed-actions">
           <Link className="secondary-button" to="/">
-            Back to Entry
+            返回广告入口
           </Link>
           <Link className="primary-button" to="/dashboard">
-            Dashboard
+            查看数据看板
           </Link>
         </div>
       </section>
 
-      <section className="feed-status" aria-label="Feed status">
+      <section className="feed-status" aria-label="推荐流状态">
         <div>
-          <span>Products</span>
+          <span>商品总数</span>
           <strong>{products.length}</strong>
         </div>
         <div>
-          <span>Render range</span>
+          <span>渲染区间</span>
           <strong>
             {range.startIndex + 1}-{range.endIndex}
           </strong>
         </div>
         <div>
-          <span>Events</span>
+          <span>事件数</span>
           <strong>{events.length}</strong>
         </div>
         <div>
-          <span>Last action</span>
+          <span>最近行为</span>
           <strong>{lastAction}</strong>
         </div>
       </section>
@@ -175,7 +175,7 @@ export function FeedPage() {
           className="virtual-feed"
           style={{ height: FEED_HEIGHT }}
           onScroll={(event) => setScrollTop(event.currentTarget.scrollTop)}
-          aria-label="Product feed virtual list"
+          aria-label="商品推荐虚拟列表"
         >
           <div className="virtual-spacer" style={{ height: totalHeight }}>
             <div className="virtual-window" style={{ transform: `translateY(${range.offsetY}px)` }}>
@@ -198,4 +198,3 @@ export function FeedPage() {
     </main>
   )
 }
-

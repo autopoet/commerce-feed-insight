@@ -42,7 +42,7 @@ export function ProductCard({
     >
       <div className={`product-image ${imageState}`}>
         {imageState === 'error' ? (
-          <span>Image unavailable</span>
+          <span>图片加载失败</span>
         ) : (
           <img
             src={product.imageUrl}
@@ -59,7 +59,7 @@ export function ProductCard({
           <div>
             <div className="product-meta">
               <span>{product.discountTag}</span>
-              <span>#{position + 1}</span>
+              <span>第 {position + 1} 位</span>
             </div>
             <h3>{product.title}</h3>
           </div>
@@ -71,7 +71,7 @@ export function ProductCard({
             <strong>{formatCurrency(product.price)}</strong>
             <del>{formatCurrency(product.originalPrice)}</del>
             <p>
-              {product.shopName} / sold {formatCompactNumber(product.salesCount)}
+              {product.shopName} / 已售 {formatCompactNumber(product.salesCount)}
             </p>
           </div>
           <div className="product-actions">
@@ -83,7 +83,7 @@ export function ProductCard({
                 flashFeedback('cart')
               }}
             >
-              {feedback === 'cart' ? 'Added' : 'Cart'}
+              {feedback === 'cart' ? '已加购' : '加购'}
             </button>
             <button
               className="buy-button"
@@ -94,7 +94,7 @@ export function ProductCard({
                 flashFeedback('purchase')
               }}
             >
-              {feedback === 'purchase' ? 'Paid' : 'Buy'}
+              {feedback === 'purchase' ? '已购买' : '购买'}
             </button>
           </div>
         </div>

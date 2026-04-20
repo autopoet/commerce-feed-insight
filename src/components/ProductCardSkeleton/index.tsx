@@ -25,4 +25,3 @@ export function ProductCardSkeleton({ count = 5 }: ProductCardSkeletonProps) {
     </div>
   )
 }
-

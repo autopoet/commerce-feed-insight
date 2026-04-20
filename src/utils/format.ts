@@ -9,4 +9,3 @@ export const formatCompactNumber = (value: number) => {
 
   return value.toLocaleString('zh-CN')
 }
-
