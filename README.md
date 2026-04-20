@@ -4,7 +4,7 @@
 
 ## 在线预览
 
-部署完成后会在这里补充 Live Demo 链接。
+- Live Demo: https://commerce-feed-insight.vercel.app/
 
 ## 项目概述
 
