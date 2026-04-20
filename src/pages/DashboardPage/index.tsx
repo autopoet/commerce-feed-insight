@@ -52,10 +52,10 @@ export function DashboardPage() {
 
   return (
     <main className="page dashboard-page">
-      <section className="dashboard-header">
+      <section className="dashboard-header experiment-header">
         <div>
-          <p className="eyebrow">实时数据看板</p>
-          <h1>转化漏斗分析</h1>
+          <p className="eyebrow">实验结果看板</p>
+          <h1>广告推荐流转化漏斗</h1>
           <p>
             当前归因：{getName(adChannels, channel)} / {getName(campaigns, campaign)} /{' '}
             {getName(creatives, creative)}
@@ -75,10 +75,10 @@ export function DashboardPage() {
       </section>
 
       <section className="metric-grid" aria-label="核心指标">
-        <MetricBlock label="曝光数" value={metrics.exposures} hint="有效曝光事件" />
-        <MetricBlock label="点击数" value={metrics.clicks} hint="商品卡片点击" />
-        <MetricBlock label="加购数" value={metrics.addToCarts} hint="add_to_cart 事件" />
-        <MetricBlock label="购买数" value={metrics.purchases} hint="purchase 事件" />
+        <MetricBlock label="曝光数" value={metrics.exposures} hint="有效曝光事件" tone="blue" />
+        <MetricBlock label="点击数" value={metrics.clicks} hint="商品卡片点击" tone="blue" />
+        <MetricBlock label="加购数" value={metrics.addToCarts} hint="交易意图事件" tone="orange" />
+        <MetricBlock label="购买数" value={metrics.purchases} hint="模拟购买事件" tone="green" />
         <MetricBlock label="CTR" value={formatPercent(metrics.ctr)} hint="点击数 / 曝光数" />
         <MetricBlock
           label="加购率"
@@ -110,8 +110,8 @@ export function DashboardPage() {
 
         <div className="analysis-panel">
           <div className="section-heading">
-            <h2>最近事件</h2>
-            <p>展示最近 20 条本地埋点事件，便于观察行为链路。</p>
+            <h2>实时事件流</h2>
+            <p>最近 20 条本地埋点事件，用于观察行为如何进入漏斗。</p>
           </div>
           <div className="event-log">
             {recentEvents.length === 0 ? (

@@ -51,28 +51,40 @@ export function AdEntryPage() {
 
   return (
     <main className="page page-entry">
-      <section className="entry-hero">
+      <section className="entry-hero experiment-hero">
         <div>
-          <p className="eyebrow">广告入口</p>
-          <h1>选择广告入口，观察后续转化链路。</h1>
+          <p className="eyebrow">增长实验配置台</p>
+          <h1>创建一次广告推荐流转化实验</h1>
           <p className="hero-copy">
-            这里会生成渠道、活动和创意版本的归因上下文，后续曝光、点击、加购、购买事件都会携带这些字段。
+            选择流量来源、活动目标和创意版本，进入推荐流后观察曝光、点击、加购、购买如何沉淀为实时漏斗。
           </p>
+          <div className="hero-actions">
+            <button className="primary-button" type="button" onClick={enterFeed}>
+              启动实验流量
+            </button>
+            <Link className="secondary-button" to="/dashboard">
+              查看实验结果
+            </Link>
+          </div>
         </div>
-        <div className="hero-panel" aria-label="当前归因预览">
-          <span>当前归因</span>
+
+        <div className="experiment-map" aria-label="实验链路预览">
+          <span>广告入口</span>
           <strong>{preview.channel}</strong>
-          <p>
-            {preview.campaign} / {preview.creative}
-          </p>
+          <i />
+          <span>推荐流承接</span>
+          <strong>{preview.campaign}</strong>
+          <i />
+          <span>转化看板</span>
+          <strong>{preview.creative}</strong>
         </div>
       </section>
 
       <section className="workspace-grid">
         <div className="config-panel">
           <div className="section-heading">
-            <h2>广告入口配置</h2>
-            <p>选择一组流量来源，进入推荐流后所有核心事件都会带上这组归因信息。</p>
+            <h2>实验参数</h2>
+            <p>这三个字段会写入后续核心事件，用来观察不同流量来源和创意版本的转化表现。</p>
           </div>
 
           <label className="field">
@@ -110,24 +122,32 @@ export function AdEntryPage() {
             </select>
             <small>{creatives.find((item) => item.id === formValue.creative)?.description}</small>
           </label>
-
-          <div className="actions-row">
-            <button className="primary-button" type="button" onClick={enterFeed}>
-              进入推荐流
-            </button>
-            <Link className="secondary-button" to="/dashboard">
-              查看数据看板
-            </Link>
-          </div>
         </div>
 
         <aside className="context-panel">
-          <h2>演示链路</h2>
+          <div className="section-heading">
+            <h2>当前实验组</h2>
+            <p>用于贯穿曝光、点击、加购和购买事件。</p>
+          </div>
+          <dl className="attribution-list">
+            <div>
+              <dt>渠道</dt>
+              <dd>{preview.channel}</dd>
+            </div>
+            <div>
+              <dt>活动</dt>
+              <dd>{preview.campaign}</dd>
+            </div>
+            <div>
+              <dt>创意</dt>
+              <dd>{preview.creative}</dd>
+            </div>
+          </dl>
           <ol className="flow-list">
-            <li>选择广告入口</li>
-            <li>进入商品推荐流</li>
-            <li>触发曝光、点击、加购和购买</li>
-            <li>在实时看板查看转化漏斗</li>
+            <li>进入推荐流</li>
+            <li>触发有效曝光</li>
+            <li>完成点击、加购、购买</li>
+            <li>回到看板观察漏斗</li>
           </ol>
         </aside>
       </section>

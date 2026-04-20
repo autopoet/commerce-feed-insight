@@ -129,20 +129,20 @@ export function FeedPage() {
 
   return (
     <main className="page feed-page">
-      <section className="feed-header">
+      <section className="feed-header experiment-header">
         <div>
-          <p className="eyebrow">商品推荐流</p>
-          <h1>电商商品推荐流</h1>
+          <p className="eyebrow">实验推荐流</p>
+          <h1>广告流量承接中的商品推荐流</h1>
           <p>
-            当前流量来源：{contextLabel.channel} / {contextLabel.campaign} / {contextLabel.creative}
+            当前实验组：{contextLabel.channel} / {contextLabel.campaign} / {contextLabel.creative}
           </p>
         </div>
         <div className="feed-actions">
           <Link className="secondary-button" to="/">
-            返回广告入口
+            调整实验参数
           </Link>
           <Link className="primary-button" to="/dashboard">
-            查看数据看板
+            查看实验结果
           </Link>
         </div>
       </section>
