@@ -59,6 +59,7 @@ docs/
   TECH_DESIGN.md
   TRACKING_DESIGN.md
   INTERVIEW_NOTES.md
+  DEMO_SCRIPT.md
 ```
 
 ## 埋点口径
@@ -109,6 +110,8 @@ npm run build
 3. 我设计了统一埋点协议，把曝光、点击、加购、购买全部收敛为事件流。
 4. 广告入口选择的 `channel / campaign / creative` 会贯穿后续事件，用于做归因分析。
 5. 看板不写死数据，而是从事件流实时聚合漏斗指标和维度表现。
+
+更多远程展示与自我熟悉路线见 [docs/DEMO_SCRIPT.md](docs/DEMO_SCRIPT.md)。
 
 ## 当前 MVP
 
