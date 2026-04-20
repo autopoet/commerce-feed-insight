@@ -1,28 +1,28 @@
 import type { Product } from '../types/product'
 
-const categories = ['美妆个护', '数码家电', '服饰鞋包', '食品生鲜', '家居日用', '运动户外']
-const discountTags = ['满减', '限时券', '直播同价', '新客补贴', '大促直降', '买赠']
-const shops = ['星选旗舰店', '云仓优选', '城市好物', '超级买手店', '品质严选', '趋势集合店']
+const categories = ['Beauty', 'Digital', 'Fashion', 'Food', 'Home', 'Sports']
+const discountTags = ['Coupon', 'Flash Deal', 'Live Price', 'New User', 'Sale Drop', 'Gift']
+const shops = ['Star Choice', 'Cloud Select', 'City Goods', 'Buyer Picks', 'Quality Lab', 'Trend Store']
 const reasons = [
-  '同类商品点击率较高',
-  '大促活动承接商品',
-  '与当前广告创意人群匹配',
-  '近期加购增长明显',
-  '价格带适合新客转化',
-  '内容种草后购买链路较短',
+  'High click rate in similar products',
+  'Campaign-ready product for sale traffic',
+  'Audience match with selected creative',
+  'Recent cart growth is above baseline',
+  'Price band fits new user conversion',
+  'Short path from content interest to purchase',
 ]
 
 const titles = [
-  '轻透持妆粉底液',
-  '无线降噪蓝牙耳机',
-  '夏季防晒冰丝外套',
-  '低脂即食鸡胸肉',
-  '人体工学办公椅',
-  '速干训练跑步鞋',
-  '多功能空气炸锅',
-  '玻尿酸补水面膜',
-  '通勤大容量托特包',
-  '露营便携折叠桌',
+  'Long Wear Foundation',
+  'Wireless Noise Canceling Earbuds',
+  'Cooling Sun Protection Jacket',
+  'Ready-to-eat Chicken Breast',
+  'Ergonomic Office Chair',
+  'Quick Dry Running Shoes',
+  'Multi Function Air Fryer',
+  'Hydrating Sheet Mask',
+  'Large Commuter Tote Bag',
+  'Portable Camping Table',
 ]
 
 export const products: Product[] = Array.from({ length: 120 }, (_, index) => {
@@ -33,7 +33,7 @@ export const products: Product[] = Array.from({ length: 120 }, (_, index) => {
 
   return {
     productId: `p_${String(index + 1).padStart(3, '0')}`,
-    title: `${title} ${index + 1} 号推荐款`,
+    title: `${title} - Recommended ${index + 1}`,
     imageUrl: `https://picsum.photos/seed/commerce-feed-${index + 1}/480/480`,
     price,
     originalPrice,

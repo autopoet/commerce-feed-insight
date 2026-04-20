@@ -3,87 +3,87 @@ import type { AdChannel, AdContext, Campaign, Creative } from '../types/ad'
 export const adChannels: AdChannel[] = [
   {
     id: 'douyin_feed',
-    name: '抖音信息流',
+    name: 'Douyin Feed',
     type: 'feed',
-    description: '模拟短视频信息流广告进入电商推荐场景。',
+    description: 'Short-video feed traffic entering the commerce recommendation flow.',
   },
   {
     id: 'search_ads',
-    name: '搜索广告',
+    name: 'Search Ads',
     type: 'search',
-    description: '模拟用户带明确搜索意图进入商品流。',
+    description: 'High-intent search traffic entering product recommendations.',
   },
   {
     id: 'mall_channel',
-    name: '商城频道',
+    name: 'Mall Channel',
     type: 'mall',
-    description: '模拟商城频道内活动资源位导流。',
+    description: 'Campaign traffic from the in-app mall channel.',
   },
   {
     id: 'creator_video',
-    name: '达人短视频',
+    name: 'Creator Video',
     type: 'creator',
-    description: '模拟内容种草后的商品承接链路。',
+    description: 'Creator content traffic after product seeding.',
   },
   {
     id: 'external_launch',
-    name: '外部投放',
+    name: 'External Launch',
     type: 'external',
-    description: '模拟站外广告投放进入电商推荐流。',
+    description: 'Offsite acquisition traffic entering the commerce feed.',
   },
 ]
 
 export const campaigns: Campaign[] = [
   {
     id: '618_preheat',
-    name: '618 预热',
+    name: '618 Preheat',
     goal: 'conversion',
-    description: '大促预热活动，关注点击后的加购和购买。',
+    description: 'Major sale warm-up campaign focused on cart and purchase conversion.',
   },
   {
     id: 'summer_new',
-    name: '夏季上新',
+    name: 'Summer New',
     goal: 'ctr',
-    description: '新品种草活动，关注曝光后的兴趣点击。',
+    description: 'New arrival campaign focused on exposure-to-click interest.',
   },
   {
     id: 'flash_sale',
-    name: '低价秒杀',
+    name: 'Flash Sale',
     goal: 'conversion',
-    description: '低价心智活动，关注加购和购买效率。',
+    description: 'Low-price campaign focused on fast purchase intent.',
   },
   {
     id: 'new_user',
-    name: '新客专享',
+    name: 'New User Deal',
     goal: 'new_user',
-    description: '新客转化活动，关注首单购买表现。',
+    description: 'New customer campaign focused on first purchase behavior.',
   },
 ]
 
 export const creatives: Creative[] = [
   {
     id: 'video_a',
-    name: '短视频 A',
+    name: 'Video A',
     type: 'video',
-    description: '强利益点短视频创意。',
+    description: 'Benefit-first short video creative.',
   },
   {
     id: 'video_b',
-    name: '短视频 B',
+    name: 'Video B',
     type: 'video',
-    description: '场景化种草短视频创意。',
+    description: 'Scenario-based product seeding creative.',
   },
   {
     id: 'image_card_a',
-    name: '图文卡片 A',
+    name: 'Image Card A',
     type: 'image',
-    description: '突出价格和优惠的图文创意。',
+    description: 'Static creative emphasizing price and coupon.',
   },
   {
     id: 'live_clip_a',
-    name: '直播切片 A',
+    name: 'Live Clip A',
     type: 'live_clip',
-    description: '模拟直播间高转化片段创意。',
+    description: 'Live-commerce clip creative with conversion intent.',
   },
 ]
 
