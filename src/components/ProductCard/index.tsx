@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useExposureTracker } from '../../features/feed/useExposureTracker'
 import type { Product } from '../../types/product'
 import { formatCompactNumber, formatCurrency } from '../../utils/format'
 
 type ProductCardProps = {
   product: Product
   position: number
+  onExposure?: (product: Product, position: number, visibleRatio: number, stayDuration: number) => void
   onProductClick?: (product: Product, position: number) => void
   onAddToCart?: (product: Product, position: number) => void
   onPurchase?: (product: Product, position: number) => void
@@ -13,12 +15,19 @@ type ProductCardProps = {
 export function ProductCard({
   product,
   position,
+  onExposure,
   onProductClick,
   onAddToCart,
   onPurchase,
 }: ProductCardProps) {
   const [imageState, setImageState] = useState<'loading' | 'loaded' | 'error'>('loading')
   const [feedback, setFeedback] = useState<'cart' | 'purchase' | null>(null)
+  const exposureRef = useExposureTracker({
+    productId: product.productId,
+    onExposure: (visibleRatio, stayDuration) => {
+      onExposure?.(product, position, visibleRatio, stayDuration)
+    },
+  })
 
   const flashFeedback = (type: 'cart' | 'purchase') => {
     setFeedback(type)
@@ -26,7 +35,11 @@ export function ProductCard({
   }
 
   return (
-    <article className="product-card" onClick={() => onProductClick?.(product, position)}>
+    <article
+      className="product-card"
+      ref={exposureRef}
+      onClick={() => onProductClick?.(product, position)}
+    >
       <div className={`product-image ${imageState}`}>
         {imageState === 'error' ? (
           <span>Image unavailable</span>
@@ -70,7 +83,7 @@ export function ProductCard({
                 flashFeedback('cart')
               }}
             >
-              {feedback === 'cart' ? '已加购' : '加购'}
+              {feedback === 'cart' ? 'Added' : 'Cart'}
             </button>
             <button
               className="buy-button"
@@ -81,7 +94,7 @@ export function ProductCard({
                 flashFeedback('purchase')
               }}
             >
-              {feedback === 'purchase' ? '已购买' : '购买'}
+              {feedback === 'purchase' ? 'Paid' : 'Buy'}
             </button>
           </div>
         </div>

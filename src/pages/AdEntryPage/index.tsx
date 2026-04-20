@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { usePageView } from '../../features/tracking/usePageView'
 import { adChannels, campaigns, creatives, defaultAdContext } from '../../mocks/ads'
 import { useAdContextStore } from '../../stores/adContextStore'
 import type { AdContext } from '../../types/ad'
@@ -10,13 +11,21 @@ const getName = (items: { id: string; name: string }[], id: string) =>
   items.find((item) => item.id === id)?.name ?? id
 
 export function AdEntryPage() {
+  usePageView('ad_entry')
+
   const navigate = useNavigate()
   const setAdContext = useAdContextStore((state) => state.setAdContext)
-  const currentContext = useAdContextStore((state) => ({
-    channel: state.channel,
-    campaign: state.campaign,
-    creative: state.creative,
-  }))
+  const channel = useAdContextStore((state) => state.channel)
+  const campaign = useAdContextStore((state) => state.campaign)
+  const creative = useAdContextStore((state) => state.creative)
+  const currentContext = useMemo(
+    () => ({
+      channel,
+      campaign,
+      creative,
+    }),
+    [campaign, channel, creative],
+  )
   const [formValue, setFormValue] = useState<AdContext>(currentContext ?? defaultAdContext)
 
   const preview = useMemo(
@@ -45,13 +54,14 @@ export function AdEntryPage() {
       <section className="entry-hero">
         <div>
           <p className="eyebrow">Ad Entry</p>
-          <h1>选择一次广告入口，观察它在推荐流中的后续转化。</h1>
+          <h1>Select an ad entry and observe downstream conversion.</h1>
           <p className="hero-copy">
-            这里模拟 channel、campaign、creative 三个广告归因字段，后续曝光、点击、加购、购买都会带着这组上下文进入数据链路。
+            This page creates channel, campaign, and creative attribution context for exposure,
+            click, cart, and purchase events in the product feed.
           </p>
         </div>
-        <div className="hero-panel" aria-label="当前归因预览">
-          <span>当前归因</span>
+        <div className="hero-panel" aria-label="Current attribution preview">
+          <span>Current Attribution</span>
           <strong>{preview.channel}</strong>
           <p>
             {preview.campaign} / {preview.creative}
@@ -62,16 +72,16 @@ export function AdEntryPage() {
       <section className="workspace-grid">
         <div className="config-panel">
           <div className="section-heading">
-            <h2>广告入口配置</h2>
-            <p>选择一组投放来源，作为推荐流后续行为的归因上下文。</p>
+            <h2>Ad Entry Config</h2>
+            <p>Choose one traffic source. All later events will carry this attribution context.</p>
           </div>
 
           <label className="field">
-            <span>广告渠道 channel</span>
+            <span>Channel</span>
             <select value={formValue.channel} onChange={(event) => updateField('channel', event.target.value)}>
-              {adChannels.map((channel) => (
-                <option key={channel.id} value={channel.id}>
-                  {channel.name}
+              {adChannels.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -79,11 +89,11 @@ export function AdEntryPage() {
           </label>
 
           <label className="field">
-            <span>广告活动 campaign</span>
+            <span>Campaign</span>
             <select value={formValue.campaign} onChange={(event) => updateField('campaign', event.target.value)}>
-              {campaigns.map((campaign) => (
-                <option key={campaign.id} value={campaign.id}>
-                  {campaign.name}
+              {campaigns.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -91,11 +101,11 @@ export function AdEntryPage() {
           </label>
 
           <label className="field">
-            <span>创意版本 creative</span>
+            <span>Creative</span>
             <select value={formValue.creative} onChange={(event) => updateField('creative', event.target.value)}>
-              {creatives.map((creative) => (
-                <option key={creative.id} value={creative.id}>
-                  {creative.name}
+              {creatives.map((item) => (
+                <option key={item.id} value={item.id}>
+                  {item.name}
                 </option>
               ))}
             </select>
@@ -104,21 +114,21 @@ export function AdEntryPage() {
 
           <div className="actions-row">
             <button className="primary-button" type="button" onClick={enterFeed}>
-              进入推荐流
+              Enter Feed
             </button>
             <Link className="secondary-button" to="/dashboard">
-              查看实时看板
+              View Dashboard
             </Link>
           </div>
         </div>
 
         <aside className="context-panel">
-          <h2>演示链路</h2>
+          <h2>Demo Flow</h2>
           <ol className="flow-list">
-            <li>广告入口选择</li>
-            <li>推荐流承接</li>
-            <li>商品曝光 / 点击 / 加购 / 购买</li>
-            <li>实时看板汇总</li>
+            <li>Select ad entry</li>
+            <li>Enter recommendation feed</li>
+            <li>Expose, click, cart, and purchase products</li>
+            <li>Review realtime funnel dashboard</li>
           </ol>
         </aside>
       </section>
