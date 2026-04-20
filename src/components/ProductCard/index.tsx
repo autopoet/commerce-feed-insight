@@ -71,7 +71,7 @@ export function ProductCard({
             <strong>{formatCurrency(product.price)}</strong>
             <del>{formatCurrency(product.originalPrice)}</del>
             <p>
-              {product.shopName} · sold {formatCompactNumber(product.salesCount)}
+              {product.shopName} / sold {formatCompactNumber(product.salesCount)}
             </p>
           </div>
           <div className="product-actions">
@@ -102,4 +102,3 @@ export function ProductCard({
     </article>
   )
 }
-
