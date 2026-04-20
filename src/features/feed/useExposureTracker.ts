@@ -1,0 +1,3 @@
+export const EXPOSURE_VISIBLE_RATIO = 0.5
+export const EXPOSURE_STAY_DURATION = 1000
+
