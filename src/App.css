@@ -804,7 +804,6 @@ td {
   .entry-hero,
   .feed-header,
   .workspace-grid,
-  .product-card,
   .feed-status,
   .dashboard-header,
   .dashboard-grid,
@@ -840,6 +839,20 @@ td {
     justify-content: flex-start;
   }
 
+  .feed-status {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .virtual-feed {
+    padding: 8px;
+  }
+
+  .virtual-row {
+    padding-bottom: 10px;
+  }
+
   .metric-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -849,15 +862,68 @@ td {
   }
 
   .product-card {
-    height: auto;
+    grid-template-columns: 112px minmax(0, 1fr);
+    height: 166px;
   }
 
   .product-image {
-    aspect-ratio: 16 / 10;
+    min-width: 0;
+  }
+
+  .product-content {
+    padding: 12px;
+  }
+
+  .product-meta {
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .product-meta span {
+    padding: 3px 6px;
+    font-size: 11px;
+  }
+
+  .product-card h3 {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .recommend-reason {
+    margin-top: 5px;
+    font-size: 12px;
+    line-height: 1.45;
+    -webkit-line-clamp: 1;
   }
 
   .product-footer {
-    align-items: start;
-    flex-direction: column;
+    gap: 8px;
+    align-items: end;
+  }
+
+  .product-footer strong {
+    font-size: 18px;
+  }
+
+  .product-footer del {
+    margin-left: 4px;
+    font-size: 12px;
+  }
+
+  .product-footer p {
+    margin-top: 4px;
+    font-size: 12px;
+  }
+
+  .product-actions {
+    gap: 6px;
+  }
+
+  .product-actions button {
+    min-width: 48px;
+    min-height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
   }
 }

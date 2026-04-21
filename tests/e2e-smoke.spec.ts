@@ -23,3 +23,25 @@ test('ad entry to feed to dashboard funnel smoke flow', async ({ page }) => {
   await expect(page.getByText('购买').first()).toBeVisible()
   await page.screenshot({ path: 'docs/screenshots/03-dashboard.png', fullPage: true })
 })
+
+test('mobile feed keeps compact two-column product cards', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.goto(baseUrl)
+
+  await page.getByRole('button', { name: '启动实验流量' }).click()
+  await expect(page.getByRole('heading', { name: '广告流量承接中的商品推荐流' })).toBeVisible()
+  await page.waitForTimeout(700)
+
+  const firstCard = page.locator('.product-card').first()
+  await expect(firstCard).toBeVisible()
+
+  const cardBox = await firstCard.boundingBox()
+  expect(cardBox).not.toBeNull()
+  expect(cardBox!.height).toBeLessThanOrEqual(180)
+
+  const imageBox = await firstCard.locator('.product-image').boundingBox()
+  expect(imageBox).not.toBeNull()
+  expect(imageBox!.width).toBeLessThan(140)
+
+  await page.screenshot({ path: 'docs/screenshots/04-mobile-feed.png', fullPage: true })
+})

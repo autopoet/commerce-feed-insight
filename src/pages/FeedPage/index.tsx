@@ -14,7 +14,9 @@ import type { Product } from '../../types/product'
 export const FEED_PAGE_ROUTE = '/feed'
 
 const ITEM_HEIGHT = 244
+const MOBILE_ITEM_HEIGHT = 176
 const FEED_HEIGHT = 680
+const MOBILE_QUERY = '(max-width: 860px)'
 
 const getName = (items: { id: string; name: string }[], id: string) =>
   items.find((item) => item.id === id)?.name ?? id
@@ -38,9 +40,10 @@ export function FeedPage() {
   )
   const [isLoading, setIsLoading] = useState(true)
   const [lastAction, setLastAction] = useState('等待用户行为')
+  const [itemHeight, setItemHeight] = useState(ITEM_HEIGHT)
   const { range, visibleItems, totalHeight, setScrollTop } = useVirtualList({
     items: products,
-    itemHeight: ITEM_HEIGHT,
+    itemHeight,
     containerHeight: FEED_HEIGHT,
     overscan: 4,
   })
@@ -48,6 +51,18 @@ export function FeedPage() {
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), 500)
     return () => window.clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(MOBILE_QUERY)
+    const syncItemHeight = () => {
+      setItemHeight(mediaQuery.matches ? MOBILE_ITEM_HEIGHT : ITEM_HEIGHT)
+    }
+
+    syncItemHeight()
+    mediaQuery.addEventListener('change', syncItemHeight)
+
+    return () => mediaQuery.removeEventListener('change', syncItemHeight)
   }, [])
 
   const contextLabel = useMemo(
@@ -180,7 +195,7 @@ export function FeedPage() {
           <div className="virtual-spacer" style={{ height: totalHeight }}>
             <div className="virtual-window" style={{ transform: `translateY(${range.offsetY}px)` }}>
               {visibleItems.map(({ item, index }) => (
-                <div className="virtual-row" style={{ height: ITEM_HEIGHT }} key={item.productId}>
+                <div className="virtual-row" style={{ height: itemHeight }} key={item.productId}>
                   <ProductCard
                     product={item}
                     position={index}
